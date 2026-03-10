@@ -1,0 +1,18 @@
+# Build directory
+build/
+bin/
+
+# Qt specific
+*.user
+*.pro.user
+
+# Compiled files
+*.o
+*.obj
+*.exe
+*.out
+
+# Docker/VS Code
+.devcontainer/
+
+.vscode/
