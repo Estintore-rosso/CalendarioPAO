@@ -1,18 +1,33 @@
-# Build directory
-build/
-bin/
-
-# Qt specific
-*.user
+# --- File di configurazione di Qt Creator ---
+# Questo file contiene i percorsi del TUO computer, non va condiviso!
 *.pro.user
+*.pro.user.*
 
-# Compiled files
+# --- Cartelle di Build (Shadow builds) ---
+# Qt di solito crea cartelle chiamate build-NomeProgetto-...
+build-*/
+debug/
+release/
+
+# --- File generati da Qt (File temporanei di compilazione) ---
+# Non servono su Git perché vengono ricreati ogni volta che compili
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
 *.o
 *.obj
+*.a
+*.lib
+*.so
+*.dll
 *.exe
-*.out
 
-# Docker/VS Code
-.devcontainer/
-
+# --- File di sistema e IDE ---
+.directory
+.DS_Store
 .vscode/
+.idea/
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles/
