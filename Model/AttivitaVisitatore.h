@@ -1,16 +1,21 @@
 #ifndef ATTIVITAVISITOR_H
 #define ATTIVITAVISITOR_H
 
-// senza dover includere i loro file .h (evita inclusioni circolari!)
+class MeetingVirtuale;
+class Task;
 class Appuntamento;
+class Scadenza;
 
 class AttivitaVisitor {
 public:
     virtual ~AttivitaVisitor() = default;
 
-    // Un metodo visit() per OGNI classe concreta che creerai
+    // Creare per ogni classe concreta
+    virtual void visit(MeetingVirtuale& appuntamento) = 0;
+    virtual void visit(Task& appuntamento) = 0;
     virtual void visit(Appuntamento& appuntamento) = 0;
-    
+    virtual void visit(Scadenza& appuntamento) = 0;
+
 };
 
 #endif

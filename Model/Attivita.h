@@ -26,12 +26,14 @@ public:
     QDateTime getDFine() const;
     QString getTitolo() const;
     QString getDescrizione() const;
+    bool getTuttoGiorno() const;
 
     // set
     void setDInizio(const QDateTime &date);
     void setDFine(const QDateTime &date);
     void setTitolo(const QString &text);
     void setDescrizione(const QString &text);
+    void setTuttoGiorno(const bool &giorno);
 
     void registraObserver(Observer* oss);
     void rimuoviObserver(Observer* oss);

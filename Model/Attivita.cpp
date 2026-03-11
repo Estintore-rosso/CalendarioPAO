@@ -34,12 +34,14 @@ QDateTime Attivita::getDInizio() const { return dInizio; }
 QDateTime Attivita::getDFine() const { return dFine; }
 QString Attivita::getTitolo() const { return titolo; }
 QString Attivita::getDescrizione() const { return descrizione; }
+bool Attivita::getTuttoGiorno() const {return tuttoGiorno; }
 
 // setters
 void Attivita::setDInizio(const QDateTime &data) { dInizio = data; notify(); }
 void Attivita::setDFine(const QDateTime &data) { dFine = data; notify(); }
 void Attivita::setTitolo(const QString &tit) { titolo = tit; notify(); }
 void Attivita::setDescrizione(const QString &desc) { descrizione = desc; notify(); }
+void Attivita::setTuttoGiorno(const bool &giorno) {tuttoGiorno = giorno; notify(); }
 
 void Attivita::registraObserver(Observer* oss) {
     observers.push_back(oss);
@@ -62,8 +64,8 @@ QJsonObject Attivita::toJson() const {
     json["id"] = id;
     json["titolo"] = titolo;
     json["descrizione"] = descrizione;
-    json["inizio"] = dInizio.toString(Qt::ISODate);
-    json["fine"] = dFine.toString(Qt::ISODate);
+    if(dInizio.isValid())   json["inizio"] = dInizio.toString(Qt::ISODate);
+    if(dFine.isValid())     json["fine"] = dFine.toString(Qt::ISODate); //per salvare spazio, andrebbe lo stesso anche in caso di null
     json["tuttoGiorno"] = tuttoGiorno;
     return json;
 }
