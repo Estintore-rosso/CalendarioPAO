@@ -13,7 +13,7 @@ class Scadenza: public Attivita{
     friend class CostruttAttivita;
 
     public:
-        Scadenza(const QString& tit, const QDateTime& inizio, bool tuttoGiorno, const QString& link, const QString etich, bool urg);
+        Scadenza(const QString& tit, const QDateTime& inizio, bool tuttoGiorno, const QString etich, bool urg);
 
         ~Scadenza() override = default;
 

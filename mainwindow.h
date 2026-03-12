@@ -1,6 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#pragma once
+#include <vector>
+#include "Attivita.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -19,5 +22,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    std::vector<Attivita*> attivitaList; // Lista per memorizzare le attività
 };
 #endif // MAINWINDOW_H

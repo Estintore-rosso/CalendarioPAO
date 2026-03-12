@@ -3,7 +3,7 @@
 #include <QString>
 #include <QDateTime>
 
-Scadenza::Scadenza(const QString& tit, const QDateTime& inizio, bool tuttoGiorno, const QString& link, const QString etich, bool urg): 
+Scadenza::Scadenza(const QString& tit, const QDateTime& inizio, bool tuttoGiorno,const QString etich, bool urg): 
     Attivita(tit,inizio,tuttoGiorno), 
     etichetta(etich),
     urgente(urg)
