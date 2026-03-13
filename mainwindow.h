@@ -3,8 +3,11 @@
 
 #pragma once
 #include <vector>
-#include "Attivita.h"
+#include "Model/Attivita.h"
 #include <QMainWindow>
+#include <QLayout>
+#include <QCheckBox>
+#include "Model/Task.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,5 +26,17 @@ public:
 private:
     Ui::MainWindow *ui;
     std::vector<Attivita*> attivitaList; // Lista per memorizzare le attività
+
+    void aggiornaTutto();
+    void aggiornaCalendario();
+    void aggiornaListeAttivita();
+    void svuotaLayout(QLayout* layout);
+    QWidget* creaRigaAttivita(Attivita* a);
+    QWidget* creaRigaTask(Task* t);
+    void eliminaAttivita(Attivita* a);
+    void mostraDettagli(Attivita* a);
+    private slots:
+        void on_actionAggiungi_triggered();
+        void on_actionImportaJson_triggered();
 };
 #endif // MAINWINDOW_H

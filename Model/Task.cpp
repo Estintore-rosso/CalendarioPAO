@@ -11,14 +11,12 @@ void Task::accetta(AttivitaVisitatore& v) {
     v.visit(*this);
 }
 
+QString Task::getTipo() const { return "Task"; }
+
 QJsonObject Task::toJson() const{
     QJsonObject json = Attivita::toJson();
-    json["tipo"] = "Task"; 
+    json["tipo"] = getTipo(); 
     return json;
-}
-
-void Task::caricaJson(const QJsonObject& json ){
-    Attivita::caricaJson(json);
 }
 
 

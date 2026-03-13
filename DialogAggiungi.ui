@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogAggiugni</class>
- <widget class="QDialog" name="DialogAggiugni">
+ <class>DialogAggiungi</class>
+ <widget class="QDialog" name="DialogAggiungi">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>437</height>
+    <height>576</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -196,8 +196,7 @@
      <item row="12" column="0" colspan="2">
       <widget class="QPlainTextEdit" name="PPUDesc">
        <property name="plainText">
-        <string>
-</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -255,7 +254,7 @@
   <connection>
    <sender>PPUBottSalva</sender>
    <signal>clicked()</signal>
-   <receiver>DialogAggiugni</receiver>
+   <receiver>DialogAggiungi</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -271,7 +270,7 @@
   <connection>
    <sender>PPUBottAnnulla</sender>
    <signal>clicked()</signal>
-   <receiver>DialogAggiugni</receiver>
+   <receiver>DialogAggiungi</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

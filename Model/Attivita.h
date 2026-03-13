@@ -13,11 +13,8 @@ class Observer;
 class Attivita {
     friend class CostruttAttivita;
 public:
-    //Attivita(const QString& tit, const QString& desc, const QDateTime& inizio, const QDateTime& fine, bool giorno);
-    //Attivita(const QString& tit, const QString& desc, const QDateTime& inizio, bool tuttoGiorno);
-    //Attivita(const QString& tit, const QDateTime& inizio, const QDateTime& fine, bool tuttoGiorno);
+    
     Attivita(const QString& tit, const QDateTime& inizio, bool giorno);
-
     virtual ~Attivita() = default;
 
     // get
@@ -27,6 +24,7 @@ public:
     QString getTitolo() const;
     QString getDescrizione() const;
     bool getTuttoGiorno() const;
+    virtual QString getTipo() const = 0;
 
     // set
     void setDInizio(const QDateTime &date);

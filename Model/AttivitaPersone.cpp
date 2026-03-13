@@ -3,9 +3,6 @@
 #include <QJsonArray>
 #include <algorithm>
 
-//AttivitaPersone::AttivitaPersone(const QString& tit, const QString& desc, const QDateTime& inizio, const QDateTime& fine, bool giorno, const std::vector<QString>& listaPersone): Attivita(tit, desc, inizio, fine, giorno), persone(listaPersone) {}
-//AttivitaPersone::AttivitaPersone(const QString& tit, const QString& desc, const QDateTime& inizio, bool tuttoGiorno, const std::vector<QString>& listaPersone): Attivita(tit, desc, inizio, tuttoGiorno), persone(listaPersone) {}
-//AttivitaPersone::AttivitaPersone(const QString& tit, const QDateTime& inizio, const QDateTime& fine, bool tuttoGiorno, const std::vector<QString>& listaPersone): Attivita(tit, inizio, fine, tuttoGiorno), persone(listaPersone) {}
 AttivitaPersone::AttivitaPersone(const QString& tit, const QDateTime& inizio, bool tuttoGiorno, const std::vector<QString>& listaPersone): 
     Attivita(tit, inizio, tuttoGiorno), 
     persone(listaPersone) 

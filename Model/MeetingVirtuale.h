@@ -20,6 +20,8 @@ class MeetingVirtuale: public AttivitaPersone{
         QString getUrl() const;
         void setUrl(const QString& urlNuovo);
 
+        QString getTipo() const override;
+        
         void accetta(AttivitaVisitatore& v) override;
         QJsonObject toJson() const override;
 

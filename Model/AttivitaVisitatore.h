@@ -1,14 +1,14 @@
-#ifndef ATTIVITAVISITOR_H
-#define ATTIVITAVISITOR_H
+#ifndef ATTIVITAVISITATORE_H
+#define ATTIVITAVISITATORE_H
 
 class MeetingVirtuale;
 class Task;
 class Appuntamento;
 class Scadenza;
 
-class AttivitaVisitor {
+class AttivitaVisitatore {
 public:
-    virtual ~AttivitaVisitor() = default;
+    virtual ~AttivitaVisitatore() = default;
 
     // Creare per ogni classe concreta
     virtual void visit(MeetingVirtuale& appuntamento) = 0;

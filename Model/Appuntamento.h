@@ -19,6 +19,7 @@ class Appuntamento: public AttivitaPersone{
 
         QString getLuogo() const;
         void setLuogo(const QString& loco);
+        QString getTipo() const override;
 
         void accetta(AttivitaVisitatore& v) override;
         QJsonObject toJson() const override;

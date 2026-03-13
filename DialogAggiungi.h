@@ -1,24 +1,24 @@
-#ifndef DIALOGAGGIUGNI_H
-#define DIALOGAGGIUGNI_H
+#ifndef DIALOGAGGIUNGI_H
+#define DIALOGAGGIUNGI_H
 
 #include <QDialog>
 
 namespace Ui {
-class DialogAggiugni;
+class DialogAggiungi;
 }
 
-class DialogAggiugni : public QDialog
+class DialogAggiungi : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit DialogAggiugni(QWidget *parent = nullptr);
-    ~DialogAggiugni();
+    explicit DialogAggiungi(QWidget *parent = nullptr);
+    ~DialogAggiungi();
 
     QString getTitolo() const ;
     QString getTipo() const ;
-    QDate getDataInizio() const ;
-    QDate getDataFine() const ;
+    QDateTime getDataInizio() const ;
+    QDateTime getDataFine() const ;
     QString getLuogo() const ;
     QString getLink() const ;
     QString getPartecipanti() const ;
@@ -28,7 +28,7 @@ public:
     bool isGiorno() const ;
 
 private:
-    Ui::DialogAggiugni *ui;
+    Ui::DialogAggiungi *ui;
 };
 
-#endif // DIALOGAGGIUGNI_H
+#endif // DialogAggiungi_H

@@ -19,9 +19,10 @@ class Task: public Attivita{
         void accetta(AttivitaVisitatore& v) override;
         QJsonObject toJson() const override;
 
+        QString getTipo() const override;
+
     protected:
         Task() = default;
-        void caricaJson(const QJsonObject& json) override;
 
 };
 

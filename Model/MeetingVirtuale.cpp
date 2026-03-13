@@ -8,6 +8,7 @@ MeetingVirtuale::MeetingVirtuale(const QString& tit, const QDateTime& inizio, bo
     url(link)
     {}
 
+QString MeetingVirtuale::getTipo() const { return "MeetingVirtuale"; }
 QString MeetingVirtuale::getUrl() const {return url;}
 
 void MeetingVirtuale::setUrl(const QString& link){ url=link; notify(); }
@@ -19,7 +20,7 @@ void MeetingVirtuale::accetta(AttivitaVisitatore& v) {
 QJsonObject MeetingVirtuale::toJson() const{
     QJsonObject json = AttivitaPersone::toJson(); 
     json["url"] = url;
-    json["tipo"] = "MeetingVirtuale"; 
+    json["tipo"] = getTipo(); 
     return json;
 }
 

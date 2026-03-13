@@ -3,14 +3,17 @@
 #include <QString>
 #include <QDateTime>
 
-Scadenza::Scadenza(const QString& tit, const QDateTime& inizio, bool tuttoGiorno,const QString etich, bool urg): 
+Scadenza::Scadenza(const QString& tit, const QDateTime& inizio, bool tuttoGiorno,const QString& etich, bool urg): 
     Attivita(tit,inizio,tuttoGiorno), 
     etichetta(etich),
     urgente(urg)
     {}
 
 
-bool    Scadenza::isUrgente() const {return urgente;}
+QString Scadenza::getTipo() const { return "Scadenza"; }
+bool Scadenza::isUrgente() const {return urgente;}
+QString Scadenza::getEtichetta() const { return etichetta; }
+void Scadenza::setEtichetta(const QString& etich) { etichetta = etich; notify(); }
 
 void Scadenza::setUrgente(bool urg){ urgente=urg; notify(); }
 
@@ -22,7 +25,7 @@ QJsonObject Scadenza::toJson() const{
     QJsonObject json = Attivita::toJson(); 
     json["etichetta"] = etichetta;
     json["urgente"] = urgente;
-    json["tipo"] = "Scadenza"; 
+    json["tipo"] = getTipo(); 
     return json;
 }
 

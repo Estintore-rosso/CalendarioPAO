@@ -8,7 +8,9 @@ Appuntamento::Appuntamento(const QString& tit, const QDateTime& inizio, bool tut
     luogo(loco)
     {}
 
+QString Appuntamento::getTipo() const { return "Appuntamento"; }
 QString Appuntamento::getLuogo() const {return luogo;}
+
 
 void Appuntamento::setLuogo(const QString& loco){ luogo=loco; notify(); }
 
@@ -19,6 +21,7 @@ void Appuntamento::accetta(AttivitaVisitatore& v) {
 QJsonObject Appuntamento::toJson() const{
     QJsonObject json = AttivitaPersone::toJson(); 
     json["luogo"] = luogo;
+    json["tipo"] = getTipo();
     return json;
 }
 

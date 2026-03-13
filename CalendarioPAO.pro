@@ -10,13 +10,32 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    DialogAggiungi.cpp \
+    Model/Attivita.cpp \
+    Model/AttivitaPersone.cpp \
+    Model/Appuntamento.cpp \
+    Model/MeetingVirtuale.cpp \
+    Model/Scadenza.cpp \
+    Model/Task.cpp \
+    Model/CostruttAttivita.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    DialogAggiungi.h \
+    Model/Attivita.h \
+    Model/AttivitaPersone.h \
+    Model/Appuntamento.h \
+    Model/MeetingVirtuale.h \
+    Model/Scadenza.h \
+    Model/Task.h \
+    Model/CostruttAttivita.h \
+    Model/AttivitaVisitatore.h \
+    Model/Observer.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    DialogAggiungi.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

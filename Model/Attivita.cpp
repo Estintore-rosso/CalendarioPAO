@@ -4,21 +4,8 @@
 #include <QUuid>
 #include <algorithm>
 
-//Serve per i fromJson, non da fuori
-Attivita::Attivita() : id(QUuid::createUuid().toString(QUuid::WithoutBraces)), dInizio(), dFine(), titolo(), descrizione(){}
 
-/*Attivita::Attivita(const QString& tit, const QString& desc, const QDateTime& inizio, const QDateTime& fine, bool giorno)
-    : id(QUuid::createUuid().toString(QUuid::WithoutBraces)), 
-      dInizio(inizio), 
-      dFine(fine),
-      tuttoGiorno(giorno),
-      titolo(tit), 
-      descrizione(desc)
-{}
 
-Attivita::Attivita(const QString& tit, const QString& desc, const QDateTime& inizio, bool tuttoGiorno): Attivita(tit, desc, inizio, inizio, tuttoGiorno){}
-Attivita::Attivita(const QString& tit, const QDateTime& inizio, const QDateTime& fine, bool tuttoGiorno): Attivita(tit, "", inizio, fine, tuttoGiorno){}
-*/
 Attivita::Attivita(const QString& tit, const QDateTime& inizio, bool giorno): 
     id(QUuid::createUuid().toString(QUuid::WithoutBraces)), 
     dInizio(inizio), 
