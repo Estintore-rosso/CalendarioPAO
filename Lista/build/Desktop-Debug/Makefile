@@ -58,7 +58,8 @@ SOURCES       = ../../main.cpp \
 		../../codice/Esame.cpp \
 		../../codice/Evento.cpp \
 		../../codice/Gestore.cpp \
-		../../codice/Progetto.cpp moc_mainwindow.cpp
+		../../codice/Progetto.cpp qrc_risorse.cpp \
+		moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		Attivita.o \
@@ -66,6 +67,7 @@ OBJECTS       = main.o \
 		Evento.o \
 		Gestore.o \
 		Progetto.o \
+		qrc_risorse.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -247,7 +249,8 @@ Makefile: ../../Lista.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		../../Lista.pro
+		../../Lista.pro \
+		../../risorse.qrc
 	$(QMAKE) -o Makefile ../../Lista.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf:
@@ -328,6 +331,7 @@ Makefile: ../../Lista.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 ../../Lista.pro:
+../../risorse.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../../Lista.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 
@@ -342,6 +346,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../../risorse.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../mainwindow.h ../../codice/Attivita.h ../../codice/Esame.h ../../codice/Evento.h ../../codice/Gestore.h ../../codice/Progetto.h ../../codice/Visitatore.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../../main.cpp ../../mainwindow.cpp ../../codice/Attivita.cpp ../../codice/Esame.cpp ../../codice/Evento.cpp ../../codice/Gestore.cpp ../../codice/Progetto.cpp $(DISTDIR)/
@@ -369,8 +374,223 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_risorse.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_risorse.cpp
+qrc_risorse.cpp: ../../risorse.qrc \
+		/usr/lib/qt5/bin/rcc \
+		../../tema/darkstyle.qss \
+		../../tema/rc/transparent.png \
+		../../tema/rc/line_horizontal_pressed.png \
+		../../tema/rc/line_horizontal.png \
+		../../tema/rc/arrow_left_disabled@2x.png \
+		../../tema/rc/branch_more_focus.png \
+		../../tema/rc/.keep \
+		../../tema/rc/toolbar_move_vertical_pressed.png \
+		../../tema/rc/arrow_down_disabled@2x.png \
+		../../tema/rc/window_close_pressed@2x.png \
+		../../tema/rc/toolbar_separator_horizontal_pressed@2x.png \
+		../../tema/rc/arrow_up_focus.png \
+		../../tema/rc/window_close_pressed.png \
+		../../tema/rc/branch_open_disabled@2x.png \
+		../../tema/rc/line_horizontal_focus@2x.png \
+		../../tema/rc/checkbox_unchecked.png \
+		../../tema/rc/radio_checked_focus@2x.png \
+		../../tema/rc/checkbox_checked_pressed@2x.png \
+		../../tema/rc/base_icon_disabled.png \
+		../../tema/rc/toolbar_move_horizontal.png \
+		../../tema/rc/window_close_disabled.png \
+		../../tema/rc/toolbar_move_vertical@2x.png \
+		../../tema/rc/branch_line@2x.png \
+		../../tema/rc/toolbar_move_vertical_focus.png \
+		../../tema/rc/checkbox_checked@2x.png \
+		../../tema/rc/arrow_up_disabled.png \
+		../../tema/rc/arrow_right_pressed@2x.png \
+		../../tema/rc/radio_unchecked_disabled.png \
+		../../tema/rc/checkbox_indeterminate.png \
+		../../tema/rc/window_grip_pressed@2x.png \
+		../../tema/rc/window_close_disabled@2x.png \
+		../../tema/rc/toolbar_separator_horizontal_focus@2x.png \
+		../../tema/rc/branch_line.png \
+		../../tema/rc/branch_closed_disabled.png \
+		../../tema/rc/transparent_focus.png \
+		../../tema/rc/checkbox_indeterminate_pressed.png \
+		../../tema/rc/toolbar_separator_horizontal.png \
+		../../tema/rc/branch_end_focus.png \
+		../../tema/rc/checkbox_unchecked@2x.png \
+		../../tema/rc/window_undock_disabled.png \
+		../../tema/rc/radio_checked_pressed@2x.png \
+		../../tema/rc/toolbar_move_horizontal_focus.png \
+		../../tema/rc/branch_end_focus@2x.png \
+		../../tema/rc/arrow_left_focus.png \
+		../../tema/rc/arrow_left@2x.png \
+		../../tema/rc/toolbar_separator_vertical_focus@2x.png \
+		../../tema/rc/window_grip_focus@2x.png \
+		../../tema/rc/window_undock_focus.png \
+		../../tema/rc/window_close.png \
+		../../tema/rc/line_horizontal@2x.png \
+		../../tema/rc/toolbar_move_vertical_disabled@2x.png \
+		../../tema/rc/line_vertical_focus@2x.png \
+		../../tema/rc/arrow_right@2x.png \
+		../../tema/rc/base_icon_pressed.png \
+		../../tema/rc/branch_line_focus.png \
+		../../tema/rc/window_grip_focus.png \
+		../../tema/rc/arrow_right_disabled@2x.png \
+		../../tema/rc/toolbar_move_vertical_disabled.png \
+		../../tema/rc/branch_more_pressed@2x.png \
+		../../tema/rc/arrow_up.png \
+		../../tema/rc/arrow_left_pressed@2x.png \
+		../../tema/rc/toolbar_move_horizontal_disabled.png \
+		../../tema/rc/checkbox_checked.png \
+		../../tema/rc/line_vertical_pressed.png \
+		../../tema/rc/toolbar_separator_vertical_focus.png \
+		../../tema/rc/base_icon_pressed@2x.png \
+		../../tema/rc/branch_end_pressed.png \
+		../../tema/rc/checkbox_indeterminate_focus@2x.png \
+		../../tema/rc/window_undock_pressed.png \
+		../../tema/rc/window_minimize_disabled.png \
+		../../tema/rc/radio_checked@2x.png \
+		../../tema/rc/toolbar_move_horizontal_disabled@2x.png \
+		../../tema/rc/line_vertical.png \
+		../../tema/rc/branch_line_disabled.png \
+		../../tema/rc/branch_closed_disabled@2x.png \
+		../../tema/rc/toolbar_separator_vertical.png \
+		../../tema/rc/toolbar_move_horizontal@2x.png \
+		../../tema/rc/branch_more_disabled.png \
+		../../tema/rc/window_undock_disabled@2x.png \
+		../../tema/rc/arrow_down_pressed.png \
+		../../tema/rc/toolbar_separator_horizontal_disabled@2x.png \
+		../../tema/rc/toolbar_separator_horizontal@2x.png \
+		../../tema/rc/line_vertical_focus.png \
+		../../tema/rc/branch_more_disabled@2x.png \
+		../../tema/rc/transparent_focus@2x.png \
+		../../tema/rc/arrow_left_focus@2x.png \
+		../../tema/rc/toolbar_separator_vertical_disabled@2x.png \
+		../../tema/rc/branch_open_focus@2x.png \
+		../../tema/rc/arrow_down_focus@2x.png \
+		../../tema/rc/arrow_up_pressed@2x.png \
+		../../tema/rc/arrow_up_disabled@2x.png \
+		../../tema/rc/checkbox_checked_disabled.png \
+		../../tema/rc/checkbox_checked_disabled@2x.png \
+		../../tema/rc/line_vertical@2x.png \
+		../../tema/rc/window_close@2x.png \
+		../../tema/rc/arrow_right_disabled.png \
+		../../tema/rc/checkbox_unchecked_focus@2x.png \
+		../../tema/rc/branch_open@2x.png \
+		../../tema/rc/line_vertical_disabled@2x.png \
+		../../tema/rc/branch_more.png \
+		../../tema/rc/transparent_pressed@2x.png \
+		../../tema/rc/toolbar_move_vertical.png \
+		../../tema/rc/line_horizontal_focus.png \
+		../../tema/rc/window_minimize_focus.png \
+		../../tema/rc/checkbox_indeterminate@2x.png \
+		../../tema/rc/branch_end_pressed@2x.png \
+		../../tema/rc/arrow_up_pressed.png \
+		../../tema/rc/radio_checked_disabled@2x.png \
+		../../tema/rc/arrow_right.png \
+		../../tema/rc/branch_open_pressed.png \
+		../../tema/rc/line_horizontal_disabled.png \
+		../../tema/rc/window_close_focus.png \
+		../../tema/rc/radio_checked_disabled.png \
+		../../tema/rc/branch_more@2x.png \
+		../../tema/rc/branch_open.png \
+		../../tema/rc/checkbox_unchecked_disabled@2x.png \
+		../../tema/rc/base_icon_focus@2x.png \
+		../../tema/rc/window_close_focus@2x.png \
+		../../tema/rc/checkbox_unchecked_pressed.png \
+		../../tema/rc/window_minimize_pressed@2x.png \
+		../../tema/rc/branch_closed.png \
+		../../tema/rc/radio_unchecked_focus@2x.png \
+		../../tema/rc/radio_unchecked_disabled@2x.png \
+		../../tema/rc/radio_checked_pressed.png \
+		../../tema/rc/branch_end_disabled@2x.png \
+		../../tema/rc/arrow_up_focus@2x.png \
+		../../tema/rc/toolbar_move_vertical_pressed@2x.png \
+		../../tema/rc/toolbar_separator_vertical_pressed.png \
+		../../tema/rc/base_icon@2x.png \
+		../../tema/rc/toolbar_separator_horizontal_disabled.png \
+		../../tema/rc/branch_line_disabled@2x.png \
+		../../tema/rc/branch_closed_pressed.png \
+		../../tema/rc/branch_closed_focus@2x.png \
+		../../tema/rc/window_minimize@2x.png \
+		../../tema/rc/window_minimize.png \
+		../../tema/rc/transparent_pressed.png \
+		../../tema/rc/window_grip@2x.png \
+		../../tema/rc/checkbox_indeterminate_pressed@2x.png \
+		../../tema/rc/checkbox_checked_pressed.png \
+		../../tema/rc/base_icon_focus.png \
+		../../tema/rc/arrow_down_focus.png \
+		../../tema/rc/radio_checked.png \
+		../../tema/rc/toolbar_move_horizontal_pressed.png \
+		../../tema/rc/branch_end_disabled.png \
+		../../tema/rc/window_undock_focus@2x.png \
+		../../tema/rc/radio_unchecked_focus.png \
+		../../tema/rc/toolbar_separator_vertical_disabled.png \
+		../../tema/rc/radio_unchecked_pressed.png \
+		../../tema/rc/window_undock.png \
+		../../tema/rc/window_grip_disabled.png \
+		../../tema/rc/branch_open_pressed@2x.png \
+		../../tema/rc/radio_checked_focus.png \
+		../../tema/rc/window_undock_pressed@2x.png \
+		../../tema/rc/checkbox_checked_focus.png \
+		../../tema/rc/line_vertical_disabled.png \
+		../../tema/rc/checkbox_unchecked_focus.png \
+		../../tema/rc/branch_closed_focus.png \
+		../../tema/rc/arrow_down@2x.png \
+		../../tema/rc/toolbar_separator_horizontal_focus.png \
+		../../tema/rc/toolbar_move_vertical_focus@2x.png \
+		../../tema/rc/window_grip_disabled@2x.png \
+		../../tema/rc/radio_unchecked.png \
+		../../tema/rc/checkbox_unchecked_pressed@2x.png \
+		../../tema/rc/window_grip.png \
+		../../tema/rc/toolbar_separator_vertical@2x.png \
+		../../tema/rc/toolbar_move_horizontal_focus@2x.png \
+		../../tema/rc/arrow_right_focus.png \
+		../../tema/rc/transparent_disabled@2x.png \
+		../../tema/rc/window_grip_pressed.png \
+		../../tema/rc/base_icon_disabled@2x.png \
+		../../tema/rc/transparent@2x.png \
+		../../tema/rc/base_icon.png \
+		../../tema/rc/line_vertical_pressed@2x.png \
+		../../tema/rc/arrow_up@2x.png \
+		../../tema/rc/window_minimize_disabled@2x.png \
+		../../tema/rc/line_horizontal_disabled@2x.png \
+		../../tema/rc/checkbox_indeterminate_disabled.png \
+		../../tema/rc/window_minimize_focus@2x.png \
+		../../tema/rc/window_undock@2x.png \
+		../../tema/rc/checkbox_indeterminate_disabled@2x.png \
+		../../tema/rc/branch_line_pressed@2x.png \
+		../../tema/rc/window_minimize_pressed.png \
+		../../tema/rc/branch_line_pressed.png \
+		../../tema/rc/branch_line_focus@2x.png \
+		../../tema/rc/radio_unchecked@2x.png \
+		../../tema/rc/checkbox_indeterminate_focus.png \
+		../../tema/rc/branch_closed_pressed@2x.png \
+		../../tema/rc/toolbar_separator_vertical_pressed@2x.png \
+		../../tema/rc/arrow_left.png \
+		../../tema/rc/branch_more_focus@2x.png \
+		../../tema/rc/line_horizontal_pressed@2x.png \
+		../../tema/rc/branch_more_pressed.png \
+		../../tema/rc/arrow_right_pressed.png \
+		../../tema/rc/arrow_down_pressed@2x.png \
+		../../tema/rc/toolbar_separator_horizontal_pressed.png \
+		../../tema/rc/branch_end@2x.png \
+		../../tema/rc/branch_closed@2x.png \
+		../../tema/rc/transparent_disabled.png \
+		../../tema/rc/arrow_left_disabled.png \
+		../../tema/rc/branch_open_disabled.png \
+		../../tema/rc/radio_unchecked_pressed@2x.png \
+		../../tema/rc/branch_open_focus.png \
+		../../tema/rc/arrow_down_disabled.png \
+		../../tema/rc/branch_end.png \
+		../../tema/rc/checkbox_unchecked_disabled.png \
+		../../tema/rc/checkbox_checked_focus@2x.png \
+		../../tema/rc/toolbar_move_horizontal_pressed@2x.png \
+		../../tema/rc/arrow_left_pressed.png \
+		../../tema/rc/arrow_down.png \
+		../../tema/rc/arrow_right_focus@2x.png
+	/usr/lib/qt5/bin/rcc -name risorse ../../risorse.qrc -o qrc_risorse.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -407,7 +627,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -453,6 +673,9 @@ Progetto.o: ../../codice/Progetto.cpp ../../codice/Progetto.h \
 		../../codice/Attivita.h \
 		../../codice/Visitatore.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Progetto.o ../../codice/Progetto.cpp
+
+qrc_risorse.o: qrc_risorse.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_risorse.o qrc_risorse.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

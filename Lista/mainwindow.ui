@@ -36,6 +36,48 @@
        <widget class="QWidget" name="widget" native="true">
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="1,1,0">
+           <item>
+            <widget class="QLineEdit" name="editRicerca">
+             <property name="placeholderText">
+              <string>Cerca...</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboFiltroTipo">
+             <item>
+              <property name="text">
+               <string>Tutto</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Esami</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Progetti</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Eventi</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkFiltroUrgente">
+             <property name="text">
+              <string>Urgente</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
           <widget class="QListWidget" name="listaAttivita"/>
          </item>
          <item>

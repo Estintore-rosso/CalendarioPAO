@@ -38,6 +38,10 @@ public:
     QHBoxLayout *horizontalLayout;
     QWidget *widget;
     QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_10;
+    QLineEdit *editRicerca;
+    QComboBox *comboFiltroTipo;
+    QCheckBox *checkFiltroUrgente;
     QListWidget *listaAttivita;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *btnNuovo;
@@ -115,6 +119,32 @@ public:
         widget->setObjectName(QString::fromUtf8("widget"));
         verticalLayout = new QVBoxLayout(widget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
+        editRicerca = new QLineEdit(widget);
+        editRicerca->setObjectName(QString::fromUtf8("editRicerca"));
+
+        horizontalLayout_10->addWidget(editRicerca);
+
+        comboFiltroTipo = new QComboBox(widget);
+        comboFiltroTipo->addItem(QString());
+        comboFiltroTipo->addItem(QString());
+        comboFiltroTipo->addItem(QString());
+        comboFiltroTipo->addItem(QString());
+        comboFiltroTipo->setObjectName(QString::fromUtf8("comboFiltroTipo"));
+
+        horizontalLayout_10->addWidget(comboFiltroTipo);
+
+        checkFiltroUrgente = new QCheckBox(widget);
+        checkFiltroUrgente->setObjectName(QString::fromUtf8("checkFiltroUrgente"));
+
+        horizontalLayout_10->addWidget(checkFiltroUrgente);
+
+        horizontalLayout_10->setStretch(0, 1);
+        horizontalLayout_10->setStretch(1, 1);
+
+        verticalLayout->addLayout(horizontalLayout_10);
+
         listaAttivita = new QListWidget(widget);
         listaAttivita->setObjectName(QString::fromUtf8("listaAttivita"));
 
@@ -403,6 +433,13 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        editRicerca->setPlaceholderText(QCoreApplication::translate("MainWindow", "Cerca...", nullptr));
+        comboFiltroTipo->setItemText(0, QCoreApplication::translate("MainWindow", "Tutto", nullptr));
+        comboFiltroTipo->setItemText(1, QCoreApplication::translate("MainWindow", "Esami", nullptr));
+        comboFiltroTipo->setItemText(2, QCoreApplication::translate("MainWindow", "Progetti", nullptr));
+        comboFiltroTipo->setItemText(3, QCoreApplication::translate("MainWindow", "Eventi", nullptr));
+
+        checkFiltroUrgente->setText(QCoreApplication::translate("MainWindow", "Urgente", nullptr));
         btnNuovo->setText(QCoreApplication::translate("MainWindow", "Aggiungi", nullptr));
         btnImporta->setText(QCoreApplication::translate("MainWindow", "ImportaJson", nullptr));
         btnEsporta->setText(QCoreApplication::translate("MainWindow", "EsportaJson", nullptr));

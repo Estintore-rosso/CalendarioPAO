@@ -4,16 +4,14 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
-#include <QVariant>
 
 void Gestore::aggiungiAttivita(std::unique_ptr<Attivita> nuovaAttivita) {
-    if (nuovaAttivita) {
+    if (nuovaAttivita)
         listaAttivita.push_back(std::move(nuovaAttivita));
-    }
 }
 
 bool Gestore::rimuoviAttivita(int indice) {
-    if (indice >= 0 && indice < listaAttivita.size()) {
+    if (indice >= 0 && indice < static_cast<int>(listaAttivita.size())) {
         listaAttivita.erase(listaAttivita.begin() + indice);
         return true;
     }
@@ -21,59 +19,48 @@ bool Gestore::rimuoviAttivita(int indice) {
 }
 
 Attivita* Gestore::getAttivita(int indice) const {
-    if (indice >= 0 && indice < listaAttivita.size()) {
+    if (indice >= 0 && indice < static_cast<int>(listaAttivita.size()))
         return listaAttivita[indice].get();
-    }
     return nullptr;
 }
 
 int Gestore::getNumeroAttivita() const {
-    return listaAttivita.size();
+    return static_cast<int>(listaAttivita.size());
 }
 
 void Gestore::svuota() {
     listaAttivita.clear();
 }
 
-// --- SALVATAGGIO JSON ---
 bool Gestore::salvaSuFile(const QString& percorsoFile) const {
     QFile file(percorsoFile);
-    if (!file.open(QIODevice::WriteOnly)) {
+    if (!file.open(QIODevice::WriteOnly))
         return false;
-    }
 
     QJsonArray arrayJson;
-    for (const auto& att : listaAttivita) {
+    for (const auto& att : listaAttivita)
         arrayJson.append(att->toJson());
-    }
 
-    QJsonDocument doc(arrayJson);
-    file.write(doc.toJson());
+    file.write(QJsonDocument(arrayJson).toJson());
     file.close();
     return true;
 }
 
-// --- CARICAMENTO JSON ---
 bool Gestore::caricaDaFile(const QString& percorsoFile) {
     QFile file(percorsoFile);
-    if (!file.open(QIODevice::ReadOnly)) {
+    if (!file.open(QIODevice::ReadOnly))
         return false;
-    }
 
-    QByteArray dati = file.readAll();
+    QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
     file.close();
 
-    QJsonDocument doc = QJsonDocument::fromJson(dati);
-    if (!doc.isArray()) {
+    if (!doc.isArray())
         return false;
-    }
 
-    svuota(); 
+    svuota();
 
-    QJsonArray arrayJson = doc.array();
-    for (int i = 0; i < arrayJson.size(); ++i) {
-        QJsonObject obj = arrayJson[i].toObject();
-
+    for (const QJsonValue& val : doc.array()) {
+        QJsonObject obj = val.toObject();
         QString tipo = obj["tipo"].toString();
         QString titolo = obj["titolo"].toString();
         QString materia = obj["materia"].toString();
@@ -81,24 +68,21 @@ bool Gestore::caricaDaFile(const QString& percorsoFile) {
         QDate data = QDate::fromString(obj["dataAttivita"].toString(), Qt::ISODate);
 
         if (tipo == "Esame") {
-            int cfu = obj["cfu"].toInt();
-            int voto = obj["voto"].toInt();
-            bool superato = obj["superato"].toBool();
-            
-            aggiungiAttivita(std::make_unique<Esame>(titolo, materia, descrizione, data, cfu, voto, superato));
-        } 
-        else if (tipo == "Progetto") {
-            int numPartecipanti = obj["numeroPartecipanti"].toInt();
-            QString link = obj["linkRepo"].toString();
-            
-            aggiungiAttivita(std::make_unique<Progetto>(titolo, materia, descrizione, data, numPartecipanti, link));
-        }
-        else if (tipo == "Evento") {
-            QString link = obj["linkMeeting"].toString();
-            QString pos = obj["posizione"].toString();
-            bool partecipa = obj["intenzionePartecipare"].toBool();
-            
-            aggiungiAttivita(std::make_unique<Evento>(titolo, materia, descrizione, data, link, pos, partecipa));
+            aggiungiAttivita(std::make_unique<Esame>(
+                titolo, materia, descrizione, data,
+                obj["cfu"].toInt(), obj["voto"].toInt(), obj["superato"].toBool()
+            ));
+        } else if (tipo == "Progetto") {
+            aggiungiAttivita(std::make_unique<Progetto>(
+                titolo, materia, descrizione, data,
+                obj["numeroPartecipanti"].toInt(), obj["linkRepo"].toString()
+            ));
+        } else if (tipo == "Evento") {
+            aggiungiAttivita(std::make_unique<Evento>(
+                titolo, materia, descrizione, data,
+                obj["linkMeeting"].toString(), obj["posizione"].toString(),
+                obj["intenzionePartecipare"].toBool()
+            ));
         }
     }
     return true;
